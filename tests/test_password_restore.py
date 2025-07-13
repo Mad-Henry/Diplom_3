@@ -2,7 +2,7 @@ import allure
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
 from pages.password_restore_page import PasswordRestorePage
-from URLs import PASSWORD_RESTORE_URL
+from URLs import BASE_URL, PASSWORD_RESTORE_URL, PASSWORD_RESET_URL
 
 
 @allure.story("Проверки 'Восстановление пароля'")
@@ -16,7 +16,8 @@ class TestPasswordRestore:
         page.click_login_button()
         page = LoginPage(browser)
         page.click_on_restore_psswrd_link()
-        assert page.current_url() == PASSWORD_RESTORE_URL, \
+        url_4_assert = BASE_URL + PASSWORD_RESTORE_URL
+        assert page.current_url() == url_4_assert, \
             f"Текущий URL {page.current_url()}"
 
 
@@ -29,7 +30,8 @@ class TestPasswordRestore:
         page.click_on_restore_psswrd_link()
         page = PasswordRestorePage(browser)
         page.enter_email_and_confirm()
-        assert page.current_url() == PASSWORD_RESTORE_URL, \
+        url_4_assert = BASE_URL + PASSWORD_RESET_URL
+        assert page.current_url() == url_4_assert, \
             f"Текущий URL {page.current_url()}"
         
 

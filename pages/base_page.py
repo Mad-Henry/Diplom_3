@@ -9,13 +9,13 @@ from URLs import BASE_URL
 class BasePage:
         
 
-        def __init__(self, browser, timeout=15):
+        def __init__(self, browser, timeout=20):
             self.browser = browser
             self.wait = WebDriverWait(browser, timeout)
             self.browser_name = self.browser.capabilities["browserName"].lower()
 
 
-        def open(self, url_suffix):
+        def open(self, url_suffix=''):
             self.browser.get(BASE_URL + url_suffix)
 
 
@@ -87,7 +87,7 @@ class BasePage:
         
         @allure.step("Клик по элементу в Firefox")
         def click_on_element(self, locator):
-            target = self.wait_for_visible(locator)
+            target = self.wait_for_invisibility(locator)
             click = ActionChains(self.browser)
             click.move_to_element(target).click().perform()
 

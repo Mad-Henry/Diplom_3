@@ -2,7 +2,7 @@ import allure
 import string
 import random
 import requests
-from URLs import CREATE_USER_URL, DELETE_USER_URL
+from URLs import BASE_URL, CREATE_USER_URL, DELETE_USER_URL
 
 
 class HelpersMethods:
@@ -19,7 +19,7 @@ class HelpersMethods:
     @staticmethod
     @allure.step('Генерация email')
     def generate_email():
-        gen_email = f'"mad-henry-{HelpersMethods.generate_string(3)}@yandex.ru"'
+        gen_email = f'mad-henry-{HelpersMethods.generate_string(3)}@yandex.ru'
         return gen_email
 
 
@@ -39,11 +39,11 @@ class HelpersMethods:
 
     @staticmethod
     def create_user(payload):
-        response = requests.post(CREATE_USER_URL, data=payload)
+        response = requests.post(BASE_URL + CREATE_USER_URL, data=payload)
         return response.json(), response.status_code
 
 
     @staticmethod
     def delete_user(headers):
-        response = requests.delete(DELETE_USER_URL, headers=headers)
+        response = requests.delete(BASE_URL + DELETE_USER_URL, headers=headers)
         return response.json(), response.status_code

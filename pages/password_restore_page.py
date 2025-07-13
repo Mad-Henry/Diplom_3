@@ -17,7 +17,7 @@ class PasswordRestorePage(BasePage):
 
     @allure.step("Нажатие на иконку отображения пароля")
     def click_shows_password_icon(self):
-        self.click_on_element(RPP.PSSWRD_SHOW_TOGGLE)
+        self.forse_click(RPP.PSSWRD_SHOW_TOGGLE)
 
 
     @allure.step("Проверка, что поле пароля активно")

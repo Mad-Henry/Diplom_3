@@ -4,7 +4,7 @@ from locators.main_page_locators import MainPageLocators
 
 
 class MainPage(BasePage):
-
+  
 
     @allure.step("Нажатие 'Войти в аккаунт'")
     def click_login_button(self):

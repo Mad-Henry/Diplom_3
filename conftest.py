@@ -18,7 +18,7 @@ def browser(request):
 
 
 @pytest.fixture
-def create_user():
+def fxtr_create_user():
     data = HM.generate_creds()
     response, _ = HM.create_user(data)
     yield response, data
@@ -26,19 +26,18 @@ def create_user():
 
 
 @pytest.fixture
-def login_user(browser, create_user):
-    _, data = create_user
+def fxtr_login_user(browser, fxtr_create_user):
+    _, data = fxtr_create_user
     user_email = data["email"]
     user_password = data["password"]
-
     page = MainPage(browser)
     page.open()
     page.click_profile_button()
     page = LoginPage(browser)
-    page.login_in_to_a_profile(email=user_email, password=user_password)
+    page.login_in_to_a_profile(user_email, user_password)
 
 
 @pytest.fixture
-def create_order(browser, login_user):
+def fxtr_create_order(browser, fxtr_login_user):
     page = ConstructorPage(browser)
     return page.create_an_order()

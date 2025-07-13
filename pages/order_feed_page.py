@@ -13,7 +13,7 @@ class OrderFeedPage(BasePage):
 
     @allure.step('Проверка появления окна при выборе заказа')
     def check_for_order_windows_visability(self):
-        return self.wait_for_invisibility(OrderFeedPageLocators.ORDER_MODAL_CONTENTS_TITLE)
+        return self.wait_for_presence(OrderFeedPageLocators.ORDER_MODAL_CONTENTS_TITLE)
     
 
     @allure.step("Поиск заказа в ленте")
@@ -29,17 +29,17 @@ class OrderFeedPage(BasePage):
     @allure.step("Значение 'Выполнено за всё время'")
     def get_number_of_total_orders(self):
         self.wait_until_clickable(OrderFeedPageLocators.COMPLETE_ORDERS_TOTAL_COUNTER)
-        return self.wait_for_invisibility(OrderFeedPageLocators.COMPLETE_ORDERS_TOTAL_COUNTER).text
+        return self.wait_for_presence(OrderFeedPageLocators.COMPLETE_ORDERS_TOTAL_COUNTER).text
 
 
     @allure.step("Значени 'Выполнено за сегодня'")
     def get_number_of_today_orders(self):
         self.wait_until_clickable(OrderFeedPageLocators.COMPLETE_ORDERS_TODAY_COUNTER)
-        return self.wait_for_invisibility(OrderFeedPageLocators.COMPLETE_ORDERS_TODAY_COUNTER).text
+        return self.wait_for_presence(OrderFeedPageLocators.COMPLETE_ORDERS_TODAY_COUNTER).text
 
 
     @allure.step("Значение 'В работе'")
     def get_number_in_work_list(self):
         self.wait_until_clickable(OrderFeedPageLocators.ORDER_NUMBER_IN_WORK)
-        return self.wait_for_invisibility(OrderFeedPageLocators.ORDER_NUMBER_IN_WORK).text
+        return self.wait_for_presence(OrderFeedPageLocators.ORDER_NUMBER_IN_WORK).text
     

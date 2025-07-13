@@ -20,8 +20,8 @@ class TestOrderFeed:
         
 
     @allure.title("Заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»")
-    def test_order_displayed_in_feed(self, browser, crt_order):
-        orders_number = f"#0{crt_order}"
+    def test_order_displayed_in_feed(self, browser, fxtr_create_order):
+        orders_number = f"#0{fxtr_create_order}"
         page = MainPage(browser)
         page.open()
         page.click_to_orders_feed_button()
@@ -31,7 +31,7 @@ class TestOrderFeed:
 
 
     @allure.title("При создании нового заказа счётчик «Выполнено за всё время» увеличивается")
-    def test_total_orders_counter_change(self, browser, login_user):
+    def test_total_orders_counter_change(self, browser, fxtr_login_user):
         page = MainPage(browser)
         page.open()
         page.click_to_orders_feed_button()
@@ -40,7 +40,7 @@ class TestOrderFeed:
         page.click_on_to_constructor_button()
         page = ConstructorPage(browser)
         page.create_an_order()
-        page.click_to_orders_feed_button()
+        page.click_orders_feed_button()
         page = OrderFeedPage(browser)
         number_of_all_orders_change = page.get_number_of_total_orders()
         assert number_of_all_orders_change > number_of_all_orders, \
@@ -48,7 +48,7 @@ class TestOrderFeed:
 
 
     @allure.title("При создании нового заказа счётчик «Выполнено за сегодня» увеличивается")
-    def test_today_orders_counter_change(self, browser, login_user):
+    def test_today_orders_counter_change(self, browser, fxtr_login_user):
         page = MainPage(browser)
         page.open()
         page.click_to_orders_feed_button()
@@ -57,7 +57,7 @@ class TestOrderFeed:
         page.click_on_to_constructor_button()
         page = ConstructorPage(browser)
         page.create_an_order()
-        page.click_to_orders_feed_button()
+        page.click_orders_feed_button()
         page = OrderFeedPage(browser)
         number_of_all_orders_change = page.get_number_of_today_orders()
         assert number_of_all_orders_change > number_of_all_orders, \
@@ -65,10 +65,10 @@ class TestOrderFeed:
 
 
     @allure.title("После оформления заказа его номер появляется в разделе «В работе»")
-    def test_new_order_shown_in_orders_in_work_list(self, browser, login_user):
+    def test_new_order_shown_in_orders_in_work_list(self, browser, fxtr_login_user):
         page = ConstructorPage(browser)
         order_number = page.create_an_order()
-        page.click_to_orders_feed_button()
+        page.click_orders_feed_button()
         page = OrderFeedPage(browser)
         order_in_work = page.get_number_in_work_list()
         assert order_number > order_in_work, \

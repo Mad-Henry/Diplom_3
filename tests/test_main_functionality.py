@@ -20,8 +20,9 @@ class TestMainFeatures:
     def test_click_on_order_list_button(self, browser):
         page = MainPage(browser)
         page.open()
-        page.click_to_orders_feed_button
-        assert page.current_url() == ORDER_FEED_URL, \
+        page.click_to_orders_feed_button()
+        assert_url = BASE_URL + ORDER_FEED_URL
+        assert page.current_url() == assert_url, \
             f'{page.current_url()}'
         
 
@@ -55,7 +56,7 @@ class TestMainFeatures:
 
 
     @allure.title("Залогиненный пользователь может оформить заказ")
-    def test_auth_user_can_create_an_order(self, browser, login_user):
+    def test_auth_user_can_create_an_order(self, browser, fxtr_login_user):
         page = ConstructorPage(browser)
         number_of_order = page.create_an_order()
         assert number_of_order, \

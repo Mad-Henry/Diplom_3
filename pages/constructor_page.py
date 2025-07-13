@@ -47,7 +47,7 @@ class ConstructorPage(BasePage):
         self.forse_click(ConstructorPageLocators.ORDER_CREATE_BUTTON)
         self.wait_until_clickable(ConstructorPageLocators.ORDER_MODAL_FRAME)
         self.wait_for_invisibility(ConstructorPageLocators.DEFAULT_ORDER_NUMBER)
-        self.wait_for_invisibility(ConstructorPageLocators.ORDER_IS_PREPARING_TEXT)
+        self.wait_for_presence(ConstructorPageLocators.ORDER_IS_PREPARING_TEXT)
         order_num = self.wait_until_clickable(ConstructorPageLocators.REAL_ORDER_NUMBER).text
         self.forse_click(ConstructorPageLocators.CLOSE_ORDER_MENU_BUTTON)
         return order_num
